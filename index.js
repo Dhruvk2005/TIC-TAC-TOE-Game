@@ -57,6 +57,7 @@ boxes.forEach((box) => {
 
 
 const checkwinner = () => {
+    let winnerfound = false;
     for (let Pattern of winpatterns) {
         let value1 = boxes[Pattern[0]].innerText
         let value2 = boxes[Pattern[1]].innerText
@@ -67,9 +68,22 @@ const checkwinner = () => {
             if (value1 === value2 && value2 === value3) {
                 console.log("Winner", value1)
                 showwinner(value1)
+                winnerfound = true;
+                break;
             }
         }
     }
+    if(!winnerfound){
+    let allFilled = true;
+        if(let box of boxes){
+            if(box.innerText === "")
+                allFilled = false;
+            break;
+                }
+        if(allFilled){
+    msg.innerText = "It's a Draw!"
+            msgcontainer.classList.remove("hide")
+            disabledbtn();
 }
 
 resetbtn.addEventListener("click", resetgame)
