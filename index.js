@@ -58,6 +58,7 @@ boxes.forEach((box) => {
 
 const checkwinner = () => {
     let winnerfound = false;
+
     for (let Pattern of winpatterns) {
         let value1 = boxes[Pattern[0]].innerText
         let value2 = boxes[Pattern[1]].innerText
@@ -74,17 +75,21 @@ const checkwinner = () => {
         }
     }
     if(!winnerfound){
-    let allFilled = true;
-        if(let box of boxes){
-            if(box.innerText === "")
+        let allFilled = true;
+        for (let box of boxes) {
+            if (box.innerText === "") {
                 allFilled = false;
-            break;
-                }
-        if(allFilled){
-    msg.innerText = "It's a Draw!"
-            msgcontainer.classList.remove("hide")
+                break;
+            }
+        }
+        if (allFilled) {
+            msg.innerText = "It's a Draw!";
+            msgcontainer.classList.remove("hide");
             disabledbtn();
+        }
+    }
 }
 
 resetbtn.addEventListener("click", resetgame)
 newgamebtn.addEventListener("click", resetgame)
+
